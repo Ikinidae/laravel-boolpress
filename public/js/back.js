@@ -27823,6 +27823,20 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // js per
 //     })
 // }
 
+
+var inputTitle = document.getElementById('title');
+
+if (inputTitle) {
+  inputSlug = document.getElementById('slug');
+  inputTitle.addEventListener('focusout', function () {
+    if (!inputSlug.value) {
+      axios('/admin/getslug?title=' + inputTitle.value).then(function (res) {
+        return inputSlug.value = res.data.response;
+      });
+    }
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -27855,7 +27869,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Boolean\Corso\Seconda Parte Corso\Luglio\29-07\laravel-boolpress\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! /Users/Ikaa/Desktop/Esercizi/PHP/laravel-boolpress/resources/js/back.js */"./resources/js/back.js");
 
 
 /***/ })

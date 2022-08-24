@@ -149,4 +149,15 @@ class PostController extends Controller
 
         return redirect()->route('admin.posts.index')->with('deleted', "Il post {$post->title} è stato eliminato");
     }
+
+    public function getSlug(Request $request) {
+        // /admin/getslug?title=Questo è il titolo
+        $title = $request->query('title');
+        $slug = Post::getSlug($title);
+
+        return response()->json([
+            'success'   => true,
+            'response'  => $slug
+        ]);
+    }
 }

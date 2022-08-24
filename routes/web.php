@@ -33,6 +33,7 @@ Route::middleware('auth')
         Route::get('my-posts', 'PostController@myIndex')->name('posts.myIndex');
         Route::resource('tags', 'TagController');
         Route::get('home', 'AdminController@firstpage')->name('firstpage');
+        Route::get('getSlug', 'PostController@getSlug')->name('posts.getSlug');
    });
 
 Route::get('{any?}', function () {

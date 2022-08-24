@@ -6,6 +6,7 @@ use App\Models\Category;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class PostSeeder extends Seeder
 {
@@ -22,8 +23,13 @@ class PostSeeder extends Seeder
             $post->slug = Post::getSlug($post->title);
 
             // $post->image = 'https://picsum.photos/id/' . rand(1,100) . '/500/300';
-            $tmp_img_url = $faker->image();
-            $post->image = Storage::put($tmp_img_url);
+            $number = rand(0, 14);
+            if ($number) {
+                $contents = new File('/Users/Ikaa/Desktop/Esercizi/PHP/laravel-boolpress/storage/app/public/lorempicsum/005(' . $number . ').jpg');
+                $post->image = Storage::put('uploads', $contents);
+            } else {
+                $post->image = null;
+            }
 
             $post->content = $faker->paragraph(rand(2,10), true);
             $post->excerpt = $faker->paragraph();
